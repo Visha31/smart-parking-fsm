@@ -1,0 +1,275 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #07111f;
+    color: white;
+}
+
+header {
+    padding: 20px;
+    background: #10243b;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 10px;
+}
+
+section {
+    padding: 60px 8%;
+}
+
+h1 {
+    color: #67d5ff;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+button {
+    padding: 12px 18px;
+    margin: 8px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #67d5ff;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+.states {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background: #10243b;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.simulation-box {
+    background: #10243b;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 15px;
+    border: 1px solid #36506b;
+}
+
+th {
+    background: #10243b;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    background: #10243b;
+}
+
+@media (max-width: 700px) {
+
+    header {
+        flex-direction: column;
+    }
+
+    .states {
+        grid-template-columns: 1fr;
+    }
+}
+#transition table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 25px;
+}
+
+#transition th,
+#transition td {
+    padding: 12px;
+    border: 1px solid #36506b;
+    text-align: center;
+}
+
+#transition th {
+    background: #10243b;
+    color: #67d5ff;
+}
+
+#transition tr:nth-child(even) {
+    background: #0d1b2e;
+}
+#fsm-diagram {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.fsm-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.state {
+    padding: 20px 30px;
+    border: 2px solid #67d5ff;
+    border-radius: 12px;
+    background: #10243b;
+    color: white;
+    font-weight: bold;
+    min-width: 100px;
+}
+
+.state span {
+    color: #67d5ff;
+    font-size: 14px;
+}
+
+.arrow {
+    color: #67d5ff;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.fsm-exit {
+    margin-top: 30px;
+}
+.fsm-board {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.fsm-state {
+    width: 120px;
+    height: 120px;
+    border: 3px solid #67d5ff;
+    border-radius: 50%;
+    background: #10243b;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    box-shadow: 0 0 15px rgba(103, 213, 255, 0.3);
+}
+
+.fsm-state strong {
+    font-size: 24px;
+    color: #67d5ff;
+}
+
+.fsm-state span {
+    margin-top: 8px;
+}
+
+.fsm-arrow {
+    color: #67d5ff;
+    font-weight: bold;
+    text-align: center;
+}
+
+.fsm-transitions {
+    margin-top: 30px;
+    padding: 20px;
+    background: #0d1b2e;
+    border-radius: 12px;
+}
+
+.fsm-transitions p {
+    margin: 10px;
+}
+#state-info {
+    margin-top: 25px;
+    padding: 20px;
+    background: #10243b;
+    border: 2px solid #67d5ff;
+    border-radius: 12px;
+    text-align: center;
+}
+
+#state-info h3 {
+    color: #67d5ff;
+}
+
+#state-info p {
+    color: white;
+}
+.fsm-state {
+    cursor: pointer;
+}
+#current-state {
+    margin-top: 20px;
+    padding: 18px;
+    border: 2px solid #67d5ff;
+    border-radius: 12px;
+    text-align: center;
+    background: #0d1b2e;
+}
+
+#current-state h3 {
+    color: #67d5ff;
+}
+
+#current-state p {
+    color: white;
+}
+#current-state {
+    display: block;
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 15px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #f5f5f5;
+}
+
+#current-state h3 {
+    margin: 0 0 8px;
+}
+
+#current-state p {
+    margin: 0;
+}
+#occupied-slots {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: white !important;
+    font-size: 20px;
+    margin: 15px 0;
+    padding: 10px;
+    background: #10243b;
+}
+.active-state {
+    background: #67d5ff;
+    color: #07111f;
+    transform: scale(1.1);
+    box-shadow: 0 0 25px rgba(103, 213, 255, 0.8);
+}
+
+.active-state strong {
+    color: #07111f;
+}

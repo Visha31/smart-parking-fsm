@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Parking FSM</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>🚗 Smart Parking FSM</h1>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#learn">Learn FSM</a>
+            <a href="#simulation">Simulation</a>
+            <a href="#test">Test Cases</a>
+        </nav>
+    </header>
+
+    <section id="home">
+        <h2>Finite State Machine for Smart Parking</h2>
+
+        <p>
+            An interactive simulation of a smart parking system
+            using Finite State Machine concepts.
+        </p>
+
+        <button onclick="startSimulation()">
+            Start Simulation
+        </button>
+    </section>
+
+    <section id="learn">
+        <h2>FSM States</h2>
+
+        <div class="states">
+
+            <div class="card">
+                <h3>S0 - Empty</h3>
+                <p>No vehicles are parked.</p>
+            </div>
+
+            <div class="card">
+                <h3>S1 - Detected</h3>
+                <p>Vehicle is detected.</p>
+            </div>
+
+            <div class="card">
+                <h3>S2 - Occupied</h3>
+                <p>Parking slots are occupied.</p>
+            </div>
+
+            <div class="card">
+                <h3>S3 - Full</h3>
+                <p>All parking slots are full.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="simulation">
+
+        <h2>Parking Simulation</h2>
+
+        <div class="simulation-box">
+
+            <h3 id="state">Current State: S0 - Empty</h3>
+
+           <p id="occupied-slots">
+    Occupied Slots:
+    <span id="occupied">0</span>/5
+</p>
+
+            <button onclick="detectVehicle(); vehicleDetected()">
+                🚘 Detect Vehicle
+            </button>
+
+           <button onclick="parkVehicle(); parkingConfirmed()">
+                🅿️ Confirm Parking
+           </button>
+
+            <button onclick="exitVehicle()">
+                🚗 Vehicle Exit
+            </button>
+
+            <button onclick="resetSystem()">
+                Reset
+            </button>
+
+            <p id="message"></p>
+
+        </div>
+
+    </section>
+
+    <section id="test">
+
+        <h2>Test Cases</h2>
+
+        <table>
+
+            <tr>
+                <th>Test Case</th>
+                <th>Input</th>
+                <th>Expected Result</th>
+            </tr>
+
+            <tr>
+                <td>N01</td>
+                <td>Detect Vehicle</td>
+                <td>S1 Detected</td>
+            </tr>
+
+            <tr>
+                <td>N02</td>
+                <td>Confirm Parking</td>
+                <td>S2 Occupied</td>
+            </tr>
+
+            <tr>
+                <td>N03</td>
+                <td>Vehicle Exit</td>
+                <td>Occupancy decreases</td>
+            </tr>
+
+            <tr>
+                <td>E01</td>
+                <td>Exit when empty</td>
+                <td>Invalid event</td>
+            </tr>
+
+        </table>
+
+    </section>
+    <!-- Transition Table -->
+<section id="transition">
+    <h2>FSM Transition Table</h2>
+
+    <p>
+        This table shows how the Smart Parking system changes
+        from one state to another based on the input event.
+    </p>
+
+   <table>
+
+    <tr>
+        <th>Current State</th>
+        <th>Input / Event</th>
+        <th>Condition</th>
+        <th>Next State</th>
+        <th>Occupancy</th>
+    </tr>
+
+    <tr onclick="showTransition('S0', 'Detect Vehicle', 'S1')">
+        <td>S0 - Empty</td>
+        <td>Detect Vehicle</td>
+        <td>Vehicle detected</td>
+        <td>S1 - Detected</td>
+        <td>0</td>
+    </tr>
+
+    <tr onclick="showTransition('S1', 'Confirm Parking', 'S2')">
+        <td>S1 - Detected</td>
+        <td>Confirm Parking</td>
+        <td>Space available</td>
+        <td>S2 - Occupied</td>
+        <td>+1</td>
+    </tr>
+
+    <tr onclick="showTransition('S2', 'Confirm Parking', 'S2')">
+        <td>S2 - Occupied</td>
+        <td>Confirm Parking</td>
+        <td>Space available</td>
+        <td>S2 - Occupied</td>
+        <td>+1</td>
+    </tr>
+
+    <tr onclick="showTransition('S2', 'Confirm Parking', 'S3')">
+        <td>S2 - Occupied</td>
+        <td>Confirm Parking</td>
+        <td>Last slot</td>
+        <td>S3 - Full</td>
+        <td>+1</td>
+    </tr>
+
+    <tr onclick="showTransition('S3', 'Vehicle Exit', 'S2')">
+        <td>S3 - Full</td>
+        <td>Vehicle Exit</td>
+        <td>Valid exit</td>
+        <td>S2 - Occupied</td>
+        <td>-1</td>
+    </tr>
+
+    <tr onclick="showTransition('S2', 'Vehicle Exit', 'S2')">
+        <td>S2 - Occupied</td>
+        <td>Vehicle Exit</td>
+        <td>Vehicles remain</td>
+        <td>S2 - Occupied</td>
+        <td>-1</td>
+    </tr>
+
+    <tr onclick="showTransition('S2', 'Vehicle Exit', 'S0')">
+        <td>S2 - Occupied</td>
+        <td>Vehicle Exit</td>
+        <td>Last vehicle exits</td>
+        <td>S0 - Empty</td>
+        <td>-1</td>
+    </tr>
+
+    <tr>
+        <td>Any State</td>
+        <td>Invalid Event</td>
+        <td>Event not allowed</td>
+        <td>Same State</td>
+        <td>No change</td>
+    </tr>
+
+</table>
+</section>
+<!-- Proper FSM Diagram -->
+<section id="fsm-diagram">
+    <h2>Smart Parking FSM</h2>
+
+    <div class="fsm-board">
+
+        <div class="fsm-state s0" onclick="showState('S0')">
+            <strong>S0</strong>
+            <span>Empty</span>
+        </div>
+
+        <div class="fsm-arrow">
+            → Detect Vehicle →
+        </div>
+
+        <div class="fsm-state s1" onclick="showState('S1')">
+            <strong>S1</strong>
+            <span>Detected</span>
+        </div>
+
+        <div class="fsm-arrow">
+            → Confirm Parking →
+        </div>
+
+        <div class="fsm-state s2" onclick="showState('S2')">
+            <strong>S2</strong>
+            <span>Occupied</span>
+        </div>
+
+        <div class="fsm-arrow">
+            → Last Slot →
+        </div>
+
+        <div class="fsm-state s3" onclick="showState('S3')">
+            <strong>S3</strong>
+            <span>Full</span>
+        </div>
+
+    </div>
+
+    <div class="fsm-transitions">
+
+        <p>🚗 <b>S3 → S2:</b> Vehicle Exit</p>
+
+        <p>🚗 <b>S2 → S0:</b> Last Vehicle Exits</p>
+
+        <p>🚗 <b>S2 → S2:</b> Vehicle Exit, Vehicles Remain</p>
+
+        <p>⚠️ <b>Any State → Same State:</b> Invalid Event</p>
+
+    </div>
+    <div id="state-info">
+    <h3>Click a State</h3>
+    <p>Select any FSM state to see its explanation.</p>
+</div>
+</section>
+<div id="current-state">
+    <h3>Current State: S0 - Empty</h3>
+    <p>Parking system is ready.</p>
+</div>
+    <footer>
+        <p>Finite State Machine for Smart Parking</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
